@@ -1,3 +1,10 @@
+# Functionality
+
+1) Enter all the required input fields.
+2) After clicking on Save a form would be generated.
+3) You can input the values in the form and then click on Save on the right screen.
+4) Then a JSON Object Appears with all the mentioned key value pairs below it.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
