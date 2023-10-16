@@ -1,0 +1,84 @@
+.main_container {
+  padding: 30px;
+  position: relative;
+}
+
+.main_container h1 {
+  margin-bottom: 30px;
+}
+
+.card {
+  width: 35vw;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.formValues {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.formValues label {
+  width: 10vw;
+  text-transform: capitalize;
+  text-align-last: left;
+  font-weight: 600;
+}
+
+.formValues input,
+.formValues textarea,
+.formValues select {
+  outline: none;
+  border-radius: 8px;
+  border: 2px solid #babce0;
+}
+
+.checkboxAndRadio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  /* flex-direction: column; */
+}
+
+.btnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 30px;
+}
+
+.btnContainer button {
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: brown;
+  border: 1px solid black;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.jsonContainer {
+  width: 35vw;
+  margin: 20px auto;
+  border-radius: 8px;
+  padding: 10px;
+  border: 2px solid black;
+}
+.jsonData {
+  font-size: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
