@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./create_file.module.css";
-import {
-  BiText,
-  BiRadioCircleMarked,
-  BiSolidCheckboxChecked,
-} from "react-icons/bi";
+
+import { BiText } from "react-icons/bi";
 import { BsTextareaResize } from "react-icons/bs";
 import { CiCircleRemove } from "react-icons/ci";
 import { TiTick } from "react-icons/ti";
@@ -14,7 +11,7 @@ import {
   AiOutlinePlus,
 } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
-import DisplayForm from "../Display_Form/DisplayForm";
+import { ImRadioChecked, ImCheckboxChecked } from "react-icons/im";
 
 const CreateForm = ({ sendData }) => {
   const [editOpen, setEditOpen] = useState([]);
@@ -30,12 +27,12 @@ const CreateForm = ({ sendData }) => {
       function: () => addTextArea("textarea"),
     },
     {
-      icon: <BiRadioCircleMarked />,
+      icon: <ImRadioChecked />,
       data: "Radio Group",
       function: () => addRadio("radio"),
     },
     {
-      icon: <BiSolidCheckboxChecked />,
+      icon: <ImCheckboxChecked />,
       data: "CheckBox Group",
       function: () => addCheckbox("checkbox"),
     },
@@ -72,7 +69,6 @@ const CreateForm = ({ sendData }) => {
       label: "textarea",
       placeholder: "",
       required: false,
-      pattern: "",
     };
 
     setField((prevField) => [...prevField, elm]);
@@ -88,7 +84,6 @@ const CreateForm = ({ sendData }) => {
       placeholder: "",
       required: false,
       options: ["option1", "option2", "option3"],
-      pattern: "",
     };
 
     setField((prevField) => [...prevField, elm]);
@@ -102,9 +97,7 @@ const CreateForm = ({ sendData }) => {
       type: type,
       label: "checkbox",
       placeholder: "",
-      required: false,
       options: ["option1", "option2", "option3"],
-      pattern: "",
     };
 
     setField((prevField) => [...prevField, elm]);
@@ -120,7 +113,6 @@ const CreateForm = ({ sendData }) => {
       placeholder: "",
       required: false,
       options: ["option1", "option2", "option3"],
-      pattern: "",
     };
 
     setField((prevField) => [...prevField, elm]);
@@ -167,7 +159,6 @@ const CreateForm = ({ sendData }) => {
     const updatedFields = [...field];
 
     updatedFields[index].required = !updatedFields[index].required;
-    console.log("!!!!!_____-----------------", updatedFields);
 
     setField(updatedFields);
   };
@@ -268,18 +259,21 @@ const CreateForm = ({ sendData }) => {
                                 style={{ width: "fit-content" }}
                                 onChange={(e) => handleChangeLabels(e, index)}
                               />
-                              <div>
+                              <div className={styles.listStyle}>
                                 <label>Required?</label>
                                 <input
                                   type="checkbox"
+                                  value={elm.required}
+                                  checked={elm.required === true}
                                   onChange={(e) =>
                                     handleChangeRequired(e, index)
                                   }
                                 />
                               </div>
                               <div>
-                                <label>Select Type</label>
+                                <label>Select Type: </label>
                                 <select
+                                  value={elm.pattern}
                                   onChange={(e) =>
                                     handleChangePattern(e, index)
                                   }>
@@ -293,10 +287,11 @@ const CreateForm = ({ sendData }) => {
                               </div>
                             </>
                           ) : (
-                            <label>{elm.label}</label>
+                            <>
+                              <label>{elm.label}</label>
+                              <input type={elm.type} name={elm.id} />
+                            </>
                           )}
-
-                          <input type={elm.type} name={elm.id} />
                         </div>
                       </>
                     ) : (
@@ -328,6 +323,19 @@ const CreateForm = ({ sendData }) => {
                               style={{ width: "fit-content" }}
                               onChange={(e) => handleChangeLabels(e, index)}
                             />
+                            {elm.type === "radio" && (
+                              <div className={styles.listStyle}>
+                                <label>Required?</label>
+                                <input
+                                  type="checkbox"
+                                  value={elm.required}
+                                  checked={elm.required === true}
+                                  onChange={(e) =>
+                                    handleChangeRequired(e, index)
+                                  }
+                                />
+                              </div>
+                            )}
                           </>
                         ) : (
                           <label>{elm.label}</label>
@@ -398,6 +406,15 @@ const CreateForm = ({ sendData }) => {
                           style={{ width: "fit-content" }}
                           onChange={(e) => handleChangeLabels(e, index)}
                         />
+                        <div className={styles.listStyle}>
+                          <label>Required?</label>
+                          <input
+                            type="checkbox"
+                            value={elm.required}
+                            checked={elm.required === true}
+                            onChange={(e) => handleChangeRequired(e, index)}
+                          />
+                        </div>
                       </>
                     ) : (
                       <label>{elm.label}</label>
@@ -446,16 +463,29 @@ const CreateForm = ({ sendData }) => {
                       </span>
                     </div>
                     {editOpen[index] ? (
-                      <input
-                        type="text"
-                        value={elm.label}
-                        style={{ width: "fit-content" }}
-                        onChange={(e) => handleChangeLabels(e, index)}
-                      />
+                      <>
+                        <input
+                          type="text"
+                          value={elm.label}
+                          style={{ width: "fit-content" }}
+                          onChange={(e) => handleChangeLabels(e, index)}
+                        />
+                        <div className={styles.listStyle}>
+                          <label>Required?</label>
+                          <input
+                            type="checkbox"
+                            value={elm.required}
+                            checked={elm.required === true}
+                            onChange={(e) => handleChangeRequired(e, index)}
+                          />
+                        </div>
+                      </>
                     ) : (
-                      <label>{elm.label}</label>
+                      <>
+                        <label>{elm.label}</label>
+                        <textarea></textarea>
+                      </>
                     )}
-                    <textarea></textarea>
                   </div>
                 )}
               </div>

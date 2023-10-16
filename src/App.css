@@ -2,10 +2,20 @@ input[type="checkbox"],
 input[type="radio"] {
   scale: 1.5;
   margin-top: 3px;
+  cursor: pointer;
 }
 
+input[type=""],
 input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
 textarea,
 select {
   padding: 5px 10px;
+}
+
+select {
+  cursor: pointer;
 }

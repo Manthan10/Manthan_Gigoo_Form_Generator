@@ -17,8 +17,6 @@ const DisplayForm = ({ data }) => {
     setJsonData([]);
   };
 
-  console.log(curentForm);
-
   const saveDetailsAndShow = (e) => {
     e.preventDefault();
     const arr = Object.entries(curentForm);
@@ -73,7 +71,13 @@ const DisplayForm = ({ data }) => {
                   case "text": {
                     return (
                       <div key={index} className={styles.formValues}>
-                        <label>{elm.label}:</label>
+                        <label>
+                          {elm.label}
+                          {elm.required && (
+                            <span style={{ color: "red" }}>* </span>
+                          )}
+                          :
+                        </label>
                         <input
                           key={elm.id}
                           type={elm.pattern}
@@ -88,13 +92,20 @@ const DisplayForm = ({ data }) => {
                   case "radio": {
                     return (
                       <div key={index} className={styles.formValues}>
-                        <label>{elm.label}:</label>
+                        <label>
+                          {elm.label}
+                          {elm.required && (
+                            <span style={{ color: "red" }}>* </span>
+                          )}
+                          :
+                        </label>
                         <div>
                           {elm?.options?.map((el, idx) => (
                             <div key={idx} className={styles.checkboxAndRadio}>
                               <input
                                 key={elm.id}
                                 type="radio"
+                                required={elm.required}
                                 name={`${elm.label}~${index + 1}`}
                                 value={el}
                                 checked={
@@ -136,9 +147,16 @@ const DisplayForm = ({ data }) => {
                   case "textarea": {
                     return (
                       <div key={index} className={styles.formValues}>
-                        <label>{elm.label}:</label>
+                        <label>
+                          {elm.label}
+                          {elm.required && (
+                            <span style={{ color: "red" }}>* </span>
+                          )}
+                          :
+                        </label>
                         <textarea
                           key={elm.id}
+                          required={elm.required}
                           name={`${elm.label}~${index + 1}`}
                           value={curentForm[`${elm.label}~${index + 1}`]}
                           onChange={handleChange}></textarea>
@@ -148,10 +166,17 @@ const DisplayForm = ({ data }) => {
                   case "select": {
                     return (
                       <div key={index} className={styles.formValues}>
-                        <label>{elm.label}:</label>
+                        <label>
+                          {elm.label}
+                          {elm.required && (
+                            <span style={{ color: "red" }}>* </span>
+                          )}
+                          :
+                        </label>
                         <select
                           key={elm.id}
                           name={`${elm.label}~${index + 1}`}
+                          required={elm.required}
                           value={curentForm[`${elm.label}~${index + 1}`]}
                           onChange={handleChange}>
                           <option value="">Select Option</option>

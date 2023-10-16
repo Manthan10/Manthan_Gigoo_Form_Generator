@@ -30,7 +30,7 @@
 .formValues label {
   width: 10vw;
   text-transform: capitalize;
-  text-align-last: left;
+  text-align: left;
   font-weight: 600;
 }
 
@@ -47,7 +47,6 @@
   align-items: center;
   gap: 10px;
   padding: 5px;
-  /* flex-direction: column; */
 }
 
 .btnContainer {
